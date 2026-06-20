@@ -81,25 +81,15 @@ export default function RecentBlogs() {
                   <p className="text-slate-500 text-sm sm:text-base line-clamp-3 leading-relaxed font-normal">
                     {blog.description}
                   </p>
+                  <p className="text-blue-700 mt-5 text-sm sm:text-base line-clamp-3 leading-relaxed font-normal">
+                    created by {blog.author?.name}
+                  </p>
                 </div>
 
                 {/* Styled Bottom Button Row */}
                 <div className="mt-6 pt-4 border-t border-slate-50 flex items-center justify-between">
                   <button className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 group/btn transition-colors">
                     <span>Read More</span>
-                    <svg
-                      className="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2.5"
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
                   </button>
                 </div>
               </div>

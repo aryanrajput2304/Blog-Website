@@ -43,6 +43,12 @@ export default function CreateBlog() {
       const res = await axios.post(
         "http://localhost:5050/api/v1/blog/add",
         data,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        },
       );
 
       alert("Blog created successfully");

@@ -51,13 +51,6 @@ export default function Footer() {
               >
                 About
               </Link>
-
-              <Link
-                to="/login"
-                className="hover:text-blue-400 transition-colors duration-200"
-              >
-                Login
-              </Link>
             </div>
           </div>
 

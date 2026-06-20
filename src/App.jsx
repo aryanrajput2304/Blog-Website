@@ -7,6 +7,7 @@ import Blogs from "./pages/Blog";
 import About from "./pages/About";
 import Footer from "./components/footer";
 import CreateBlog from "./pages/createblog";
+import BlogDetails from "./pages/BLogdetails";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/about" element={<About />} />
         <Route path="/createblog" element={<CreateBlog />} />
+        <Route path="/blog/:id" element={<BlogDetails />} />
       </Routes>
       <Footer />
     </div>

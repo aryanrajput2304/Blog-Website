@@ -26,10 +26,11 @@ export default function Login() {
       const res = await axios.post(
         "http://localhost:5050/api/v1/user/login",
         formData,
+        {
+          withCredentials: true,
+        },
       );
-
       localStorage.setItem("user", JSON.stringify(res.data.user));
-      localStorage.setItem("token", res.data.token);
 
       alert("Login Successful 🎉");
 
@@ -47,6 +48,9 @@ export default function Login() {
         "http://localhost:5050/api/v1/user/google-login",
         {
           credential: credentialResponse.credential,
+        },
+        {
+          withCredentials: true,
         },
       );
 

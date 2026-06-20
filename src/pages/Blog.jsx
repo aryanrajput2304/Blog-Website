@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Blogs() {
   const [blogs, setBlogs] = useState([]);
@@ -40,12 +41,14 @@ export default function Blogs() {
 
             <div className="p-6">
               <h2 className="text-2xl font-bold mb-3">{blog.title}</h2>
-
               <p className="text-gray-600 line-clamp-3">{blog.description}</p>
-
-              <button className="mt-5 bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700">
+              <Link
+                to={`/blog/${blog._id}`}
+                className="inline-block px-4 py-2 bg-sky-500 text-white rounded-lg hover:bg-sky-700 transition"
+              >
                 Read More
-              </button>
+              </Link>
+             
             </div>
           </div>
         ))}
