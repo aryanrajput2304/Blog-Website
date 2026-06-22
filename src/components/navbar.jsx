@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import { HiMenu, HiX } from "react-icons/hi";
 import { Link, useNavigate } from "react-router-dom";
@@ -64,12 +64,14 @@ export default function Navbar() {
             About
           </Link>
 
-          <Link
-            to="/createblog"
-            className="font-medium text-slate-700 hover:text-blue-600 transition"
-          >
-            Create Blog
-          </Link>
+          {user && (
+            <Link
+              to="/createblog"
+              className="font-medium text-slate-700 hover:text-blue-600 transition"
+            >
+              Create Blog
+            </Link>
+          )}
         </div>
 
         {/* Desktop Right Side */}
@@ -102,13 +104,15 @@ export default function Navbar() {
 
         {/* Mobile Controls */}
         <div className="lg:hidden flex items-center gap-3">
-          <Link
-            to="/profile"
-            onClick={() => setIsOpen(false)}
-            className="text-3xl text-blue-600"
-          >
-            <CgProfile />
-          </Link>
+          {user && (
+            <Link
+              to="/profile"
+              onClick={() => setIsOpen(false)}
+              className="text-3xl text-blue-600 hover:text-blue-700 transition"
+            >
+              <CgProfile />
+            </Link>
+          )}
 
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -151,13 +155,15 @@ export default function Navbar() {
             About
           </Link>
 
-          <Link
-            to="/createblog"
-            onClick={() => setIsOpen(false)}
-            className="text-lg font-semibold text-slate-700 hover:text-blue-600"
-          >
-            Create Blog
-          </Link>
+          {user && (
+            <Link
+              to="/createblog"
+              onClick={() => setIsOpen(false)}
+              className="text-lg font-semibold text-slate-700 hover:text-blue-600"
+            >
+              Create Blog
+            </Link>
+          )}
 
           <div className="border-t pt-6">
             {user ? (
