@@ -1,11 +1,13 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
+import { AuthContext } from "../ContextAPI/AuthContext";
 
 export default function Login() {
   const navigate = useNavigate();
 
+  const { setUser } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -30,8 +32,7 @@ export default function Login() {
           withCredentials: true,
         },
       );
-      localStorage.setItem("user", JSON.stringify(res.data.user));
-
+      setUser(res.data.user);
       alert("Login Successful 🎉");
 
       navigate("/");
@@ -53,8 +54,7 @@ export default function Login() {
           withCredentials: true,
         },
       );
-
-      localStorage.setItem("user", JSON.stringify(res.data.user));
+      setUser(res.data.user);
 
       alert("Google Login Successful 🎉");
 

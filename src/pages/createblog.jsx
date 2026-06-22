@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
+import { AuthContext } from "../ContextAPI/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateBlog() {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -25,7 +29,6 @@ export default function CreateBlog() {
         alert("Please upload an image");
         return;
       }
-      const user = JSON.parse(localStorage.getItem("user"));
 
       if (!user) {
         alert("User not logged in");
@@ -62,6 +65,7 @@ export default function CreateBlog() {
       setMainImage(null);
 
       console.log(res.data);
+      navigate("/");
     } catch (error) {
       console.log(error);
       alert(error.response?.data?.message || "Failed to create blog");

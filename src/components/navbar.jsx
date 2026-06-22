@@ -1,14 +1,15 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import { HiMenu, HiX } from "react-icons/hi";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../ContextAPI/AuthContext";
 
 export default function Navbar() {
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
 
-  const user = JSON.parse(localStorage.getItem("user"));
+  const [isOpen, setIsOpen] = useState(false);
+  const { user, setUser } = useContext(AuthContext);
 
   const handleLogout = async () => {
     try {
@@ -20,7 +21,7 @@ export default function Navbar() {
         },
       );
 
-      localStorage.removeItem("user");
+      setUser(null);
       alert("Logout Successfully");
       navigate("/login");
       setIsOpen(false);
@@ -64,13 +65,6 @@ export default function Navbar() {
           </Link>
 
           <Link
-            to="/contact"
-            className="font-medium text-slate-700 hover:text-blue-600 transition"
-          >
-            Contact
-          </Link>
-
-          <Link
             to="/createblog"
             className="font-medium text-slate-700 hover:text-blue-600 transition"
           >
@@ -80,12 +74,14 @@ export default function Navbar() {
 
         {/* Desktop Right Side */}
         <div className="hidden lg:flex items-center gap-4">
-          <Link
-            to="/profile"
-            className="text-4xl text-blue-600 hover:text-blue-700 transition"
-          >
-            <CgProfile />
-          </Link>
+          {user && (
+            <Link
+              to="/profile"
+              className="text-4xl text-blue-600 hover:text-blue-700 transition"
+            >
+              <CgProfile />
+            </Link>
+          )}
 
           {user ? (
             <button
@@ -153,14 +149,6 @@ export default function Navbar() {
             className="text-lg font-semibold text-slate-700 hover:text-blue-600"
           >
             About
-          </Link>
-
-          <Link
-            to="/contact"
-            onClick={() => setIsOpen(false)}
-            className="text-lg font-semibold text-slate-700 hover:text-blue-600"
-          >
-            Contact
           </Link>
 
           <Link

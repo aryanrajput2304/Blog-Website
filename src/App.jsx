@@ -8,6 +8,8 @@ import About from "./pages/About";
 import Footer from "./components/footer";
 import CreateBlog from "./pages/createblog";
 import BlogDetails from "./pages/BLogdetails";
+import Profile from "./pages/profile";
+import ProtectedRoute from "./components/protectedRoute";
 
 export default function App() {
   return (
@@ -17,9 +19,24 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/blogs" element={<Blogs />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route
+          path="/blogs"
+          element={
+            <ProtectedRoute>
+              <Blogs />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/about" element={<About />} />
-        <Route path="/createblog" element={<CreateBlog />} />
+        <Route
+          path="/createblog"
+          element={
+            <ProtectedRoute>
+              <CreateBlog />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/blog/:id" element={<BlogDetails />} />
       </Routes>
       <Footer />
